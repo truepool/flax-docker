@@ -55,4 +55,11 @@ if [[ ${testnet} == "true" ]]; then
   fi
 fi
 
+if [[ $farmr == 'farmer' ]]; then
+	(cd /farmr/ && ./farmer.sh) &
+fi
+if [[ $farmr == 'harvester' ]]; then
+	(cd /farmr/ && ./harvester.sh) &
+fi
+
 while true; do sleep 30; done;

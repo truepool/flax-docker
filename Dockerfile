@@ -1,18 +1,10 @@
-FROM alpine:3.13.5 AS mm_compiler
+FROM ubuntu:latest AS mm_compiler
 ENV MM_BRANCH="pool-puzzles"
 ENV MM_CHECKOUT="e55f948388713c24f9e3d76e9bd95260ea684272"
 
 WORKDIR /root
 
-RUN apk --no-cache add \
-    gcc \
-    g++ \
-    build-base \
-    cmake \
-    gmp-dev \
-    libsodium-dev \
-    libsodium-static \
-    git
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y gcc g++ cmake libsodium-dev git
 
 RUN echo "cloning ${MM_BRANCH}"
 RUN git clone --branch ${MM_BRANCH} https://github.com/madMAx43v3r/chia-plotter.git \
@@ -39,7 +31,7 @@ ENV CHIA_BRANCH="main"
 ENV CHIA_CHECKOUT="b1cd26cf5b6512904cd2b18fa3cb2aa9bfc12551"
 ENV FARMR_VERSION="v1.4.7.1"
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y curl jq python3 ansible tar bash ca-certificates git openssl unzip wget python3-pip sudo acl build-essential python3-dev python3.8-venv python3.8-distutils apt nfs-common python-is-python3 vim tzdata
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y curl jq python3 ansible tar bash ca-certificates git openssl unzip wget python3-pip sudo acl build-essential python3-dev python3.8-venv python3.8-distutils apt nfs-common python-is-python3 vim tzdata libsodium-dev
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN dpkg-reconfigure -f noninteractive tzdata
