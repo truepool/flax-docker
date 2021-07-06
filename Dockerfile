@@ -37,6 +37,7 @@ ENV full_node_port="null"
 ENV TZ="UTC"
 ENV CHIA_BRANCH="main"
 ENV CHIA_CHECKOUT="b1cd26cf5b6512904cd2b18fa3cb2aa9bfc12551"
+ENV FARMR_VERSION="v1.4.7.1"
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y curl jq python3 ansible tar bash ca-certificates git openssl unzip wget python3-pip sudo acl build-essential python3-dev python3.8-venv python3.8-distutils apt nfs-common python-is-python3 vim tzdata
 
@@ -50,6 +51,10 @@ RUN git clone --branch ${CHIA_BRANCH} https://github.com/Chia-Network/chia-block
 && git submodule update --init mozilla-ca \
 && chmod +x install.sh \
 && /usr/bin/sh ./install.sh
+
+RUN wget https://github.com/joaquimguimaraes/farmr/releases/download/${FARMR_VERSION}/farmr-linux-x86_64.tar.gz \
+&& mkdir /farmr \
+&& tar xf farmr-linux-x86_64.tar.gz -C /farmr/
 
 ENV PATH=/chia-blockchain/venv/bin/:$PATH
 WORKDIR /chia-blockchain
