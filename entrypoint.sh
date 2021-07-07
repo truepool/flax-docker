@@ -9,6 +9,9 @@ cd /chia-blockchain
 
 chia init
 
+# Enable INFO log level by default
+chia configure -log-level INFO
+
 if [[ ${keys} == "generate" ]]; then
   echo "to use your own keys pass them as a text file -v /path/to/keyfile:/path/in/container and -e keys=\"/path/in/container\""
   chia keys generate
