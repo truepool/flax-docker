@@ -1,15 +1,22 @@
-# Official TruePool.io & TrueNAS Chia Docker Container
+# Official [TruePool.io](https://www.truepool.io) & [TrueNAS](https://www.truenas.com) Chia Docker Container
+
+## Important Links
+
+* [TruePool.io - Website & Leaderboards](https://www.truepool.io)
+* [Official Container Image Documentation](https://www.truepool.io/kb/truepool-docker-image/)
+* [ixsystems/chia-docker - Docker Hub](https://hub.docker.com/repository/docker/ixsystems/chia-docker)
+
 
 Current Versions:
 
-Chia: [1.2.0](https://github.com/Chia-Network/chia-blockchain/releases/tag/1.2.0)
-Plotman: [v0.5](https://github.com/ericaltendorf/plotman/releases/tag/v0.5)
-Farmr: [1.4.7.1](https://github.com/joaquimguimaraes/farmr/releases/tag/v1.4.7.1)
-MadMax: [master / 2144ce10cb2133b3fd911640d9fa483ec3223b7d](https://github.com/madMAx43v3r/chia-plotter/commit/2144ce10cb2133b3fd911640d9fa483ec3223b7d)
+* Chia: [1.2.0](https://github.com/Chia-Network/chia-blockchain/releases/tag/1.2.0)
+* Plotman: [v0.5](https://github.com/ericaltendorf/plotman/releases/tag/v0.5)
+* Farmr: [1.4.7.1](https://github.com/joaquimguimaraes/farmr/releases/tag/v1.4.7.1)
+* MadMax: [master / 2144ce10cb2133b3fd911640d9fa483ec3223b7d](https://github.com/madMAx43v3r/chia-plotter/commit/2144ce10cb2133b3fd911640d9fa483ec3223b7d)
 
 ## Basic Startup
 ```
-docker run --name <container-name> -d ghcr.io/chia-network/chia:latest
+docker run --name <container-name> -d ixsystems/chia-docker:latest
 (optional -v /path/to/plots:/plots)
 ```
 #### set the timezone for the container (optional, defaults to UTC)
@@ -68,7 +75,7 @@ docker exec -it chia venv/bin/chia show -s -c
 
 #### Connect to testnet?
 ```
-docker run -d --expose=58444 --expose=8555 -e testnet=true --name <container-name> ghcr.io/chia-network/chia:latest
+docker run -d --expose=58444 --expose=8555 -e testnet=true --name <container-name> ixsystems/chia-docker:latest
 ```
 
 #### Need a wallet?
