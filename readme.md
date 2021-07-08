@@ -1,4 +1,11 @@
-# Official Chia Docker Container
+# Official TruePool.io & TrueNAS Chia Docker Container
+
+Current Versions:
+
+Chia: [1.2.0](https://github.com/Chia-Network/chia-blockchain/releases/tag/1.2.0)
+Plotman: [v0.5](https://github.com/ericaltendorf/plotman/releases/tag/v0.5)
+Farmr: [1.4.7.1](https://github.com/joaquimguimaraes/farmr/releases/tag/v1.4.7.1)
+MadMax: [master / 2144ce10cb2133b3fd911640d9fa483ec3223b7d](https://github.com/madMAx43v3r/chia-plotter/commit/2144ce10cb2133b3fd911640d9fa483ec3223b7d)
 
 ## Basic Startup
 ```
