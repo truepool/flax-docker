@@ -30,6 +30,15 @@ rm -rf /farmr/cache
 ln -s /data/farmr/cache /farmr/cache
 ln -s /data/farmr/id.json /farmr/id.json
 
+# Setup plotman persistence
+if [ ! -d "/data/plotman" ] ; then
+	mkdir -p /data/plotman
+fi
+if [ ! -d /root/.config ] ; then
+	mkdir /root/.config/
+fi
+ln -fs /data/plotman /root/.config/plotman
+
 
 cd /chia-blockchain
 
