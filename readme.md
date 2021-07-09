@@ -17,6 +17,7 @@ Current Versions:
 ## Basic Startup
 ```
 docker run --name <container-name> -d ixsystems/chia-docker:latest
+(optional -v /path/to/data:/data)
 (optional -v /path/to/plots:/plots)
 ```
 #### set the timezone for the container (optional, defaults to UTC)
@@ -27,6 +28,11 @@ Timezones can be configured using the `TZ` env variable. A list of supported tim
 ## Configuration
 
 You can modify the behavior of your Chia container by setting specific environment variables.
+
+To ensure that your chia config settings and sycned blockchain persist, you can pass in a directory for /data
+```
+-v /path/to/data:/data
+```
 
 To use your own keys pass as arguments on startup (post 1.0.2 pre 1.0.2 must manually pass as shown below)
 ```
@@ -51,12 +57,12 @@ To start a harvester only node pass
 -e harvester="true" -e farmer_address="addres.of.farmer" -e farmer_port="portnumber" -v /path/to/ssl/ca:/path/in/container -e ca="/path/in/container" -e keys="copy"
 ```
 
-To start the farmr bot in farmer mode
+To start the farmr.net bot in farmer mode
 ```
 -e farmr="farmer"
 ```
 
-To start the farmr bot in harvester mode
+To start the farmr.net bot in harvester mode
 ```
 -e farmr="harvester"
 ```

@@ -3,6 +3,34 @@ if [[ -n "${TZ}" ]]; then
   ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 fi
 
+# Setup locations for /data to be functional
+if [ ! -d "/data" ] ; then
+	echo "Warning: No /data, container state data will be lost at restart/shutdown!"
+	mkdir /data
+fi
+
+# Setup Chia main state directory
+if [ ! -d "/data/chia" ] ; then
+	mkdir /data/chia
+fi
+ln -s /data/chia /root/.chia
+
+# Setup Farmr Files
+if [ ! -d "/data/farmr/config" ] ; then
+	mkdir -p /data/farmr/config
+	mv /farmr/config/config-xch.json /data/farmr/config/
+fi
+rm -rf /farmr/config
+ln -s /data/farmr/config /farmr/config
+
+if [ ! -d "/data/farmr/cache" ] ; then
+	mkdir -p /data/farmr/cache
+fi
+rm -rf /farmr/cache
+ln -s /data/farmr/cache /farmr/cache
+ln -s /data/farmr/id.json /farmr/id.json
+
+
 cd /chia-blockchain
 
 . ./activate
