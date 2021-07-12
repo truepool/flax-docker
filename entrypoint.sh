@@ -25,6 +25,7 @@ ln -s /data/farmr/config /farmr/config
 
 if [ ! -d "/data/farmr/cache" ] ; then
 	mkdir -p /data/farmr/cache
+	mv /farmr/cache/cache-xch.json /data/farmr/cache/
 fi
 rm -rf /farmr/cache
 ln -s /data/farmr/cache /farmr/cache
@@ -100,6 +101,10 @@ if [[ $farmr == 'farmer' ]]; then
 fi
 if [[ $farmr == 'harvester' ]]; then
 	(cd /farmr/ && ./harvester.sh) &
+fi
+
+if [[ $plotman == 'true' ]]; then
+	(nohup plotman plot >> /data/plotman/daemon.log 2>&1) &
 fi
 
 while true; do sleep 30; done;

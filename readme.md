@@ -11,8 +11,8 @@ Current Versions:
 
 * Chia: [1.2.0](https://github.com/Chia-Network/chia-blockchain/releases/tag/1.2.0)
 * Plotman: [v0.5](https://github.com/ericaltendorf/plotman/releases/tag/v0.5)
-* Farmr: [1.4.7.1](https://github.com/joaquimguimaraes/farmr/releases/tag/v1.4.7.1)
-* MadMax: [master / 2144ce10cb2133b3fd911640d9fa483ec3223b7d](https://github.com/madMAx43v3r/chia-plotter/commit/2144ce10cb2133b3fd911640d9fa483ec3223b7d)
+* Farmr: [1.5.0.1](https://github.com/joaquimguimaraes/farmr/releases/tag/v1.5.0.1)
+* MadMax: [master / 95389dc2a2b5c746e5afa36f51e106de3d0f8c91](https://github.com/madMAx43v3r/chia-plotter/commit/95389dc2a2b5c746e5afa36f51e106de3d0f8c91)
 
 ## Basic Startup
 ```
@@ -57,15 +57,22 @@ To start a harvester only node pass
 -e harvester="true" -e farmer_address="addres.of.farmer" -e farmer_port="portnumber" -v /path/to/ssl/ca:/path/in/container -e ca="/path/in/container" -e keys="copy"
 ```
 
-To start the farmr.net bot in farmer mode
+To start the farmr.net bot in farmer mode (Logs stored in /farmr/log.txt)
 ```
 -e farmr="farmer"
 ```
 
-To start the farmr.net bot in harvester mode
+To start the farmr.net bot in harvester mode (Logs stored in /farmr/log.txt)
 ```
 -e farmr="harvester"
 ```
+
+To start the plotman tool in daemon mode (Logs stored in /data/plotman/daemon.log)
+```
+-e plotman="true"
+```
+NOTE: You should make sure plotman is configured properly first
+
 
 The `plots_dir` environment variable can be used to specify the directory containing the plots, it supports PATH-style colon-separated directories.
 
