@@ -1,17 +1,26 @@
 FROM ubuntu:latest AS mm_compiler
 ENV MM_BRANCH="master"
 ENV MM_CHECKOUT="95389dc2a2b5c746e5afa36f51e106de3d0f8c91"
+ENV BB_BRANCH="master"
+ENV BB_CHECKOUT="95389dc2a2b5c746e5afa36f51e106de3d0f8c91"
 
 WORKDIR /root
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y gcc g++ cmake libsodium-dev git
 
-RUN echo "cloning ${MM_BRANCH}"
+RUN echo "cloning MadMax branch ${MM_BRANCH}"
 RUN git clone --branch ${MM_BRANCH} https://github.com/madMAx43v3r/chia-plotter.git \
 && cd chia-plotter \
 && git checkout ${MM_CHECKOUT} \
 && git submodule update --init \
 && /bin/sh ./make_devel.sh
+
+RUN echo "cloning BladeBit ${BB_BRANCH}"
+RUN git clone --branch ${BB_BRANCH} --recursive https://github.com/harold-b/bladebit.git \
+&& cd bladebit \
+&& ./build-bls \
+&& make clean && make -j$(nproc --all)
+
 
 FROM ubuntu:latest
 
@@ -27,8 +36,8 @@ ENV farmer_port="null"
 ENV testnet="false"
 ENV full_node_port="null"
 ENV TZ="UTC"
-ENV CHIA_BRANCH="1.2.0"
-ENV CHIA_CHECKOUT="b2ec0f7ae786882ab7c32060f0375f74e87e9f3f"
+ENV CHIA_BRANCH="1.2.1"
+ENV CHIA_CHECKOUT="efd401ee35cff76c7fc4d6779c68f72f24fc0217"
 ENV FARMR_VERSION="v1.5.0.1"
 ENV PLOTMAN_VERSION="v0.5"
 
@@ -60,8 +69,12 @@ ENV PATH=/chia-blockchain/venv/bin/:$PATH
 WORKDIR /chia-blockchain
 ADD ./entrypoint.sh entrypoint.sh
 
+# Copy madmax
 COPY --from=mm_compiler /root/chia-plotter/build /usr/lib/chia-plotter
 RUN ln -s /usr/lib/chia-plotter/chia_plot /usr/bin/chia_plot
+
+# Copy bladebit
+COPY --from=mm_compiler /root/bladebit/.bin/release/bladebit /usr/bin/bladebit
 
 
 ENTRYPOINT ["bash", "./entrypoint.sh"]

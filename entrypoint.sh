@@ -11,9 +11,9 @@ fi
 
 # Setup Chia main state directory
 if [ ! -d "/data/chia" ] ; then
-	mkdir /data/chia
+	mkdir -p /data/chia
 fi
-ln -s /data/chia /root/.chia
+ln -fs /data/chia /root/.chia
 
 # Setup Farmr Files
 if [ ! -d "/data/farmr/config" ] ; then
@@ -21,15 +21,15 @@ if [ ! -d "/data/farmr/config" ] ; then
 	mv /farmr/config/config-xch.json /data/farmr/config/
 fi
 rm -rf /farmr/config
-ln -s /data/farmr/config /farmr/config
+ln -fs /data/farmr/config /farmr/config
 
 if [ ! -d "/data/farmr/cache" ] ; then
 	mkdir -p /data/farmr/cache
 	mv /farmr/cache/cache-xch.json /data/farmr/cache/
 fi
 rm -rf /farmr/cache
-ln -s /data/farmr/cache /farmr/cache
-ln -s /data/farmr/id.json /farmr/id.json
+ln -fs /data/farmr/cache /farmr/cache
+ln -fs /data/farmr/id.json /farmr/id.json
 
 # Setup plotman persistence
 if [ ! -d "/data/plotman" ] ; then

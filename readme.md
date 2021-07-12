@@ -9,10 +9,11 @@
 
 Current Versions:
 
-* Chia: [1.2.0](https://github.com/Chia-Network/chia-blockchain/releases/tag/1.2.0)
-* Plotman: [v0.5](https://github.com/ericaltendorf/plotman/releases/tag/v0.5)
-* Farmr: [1.5.0.1](https://github.com/joaquimguimaraes/farmr/releases/tag/v1.5.0.1)
-* MadMax: [master / 95389dc2a2b5c746e5afa36f51e106de3d0f8c91](https://github.com/madMAx43v3r/chia-plotter/commit/95389dc2a2b5c746e5afa36f51e106de3d0f8c91)
+* Chia: [1.2.1](https://github.com/Chia-Network/chia-blockchain/)
+* Plotman: [v0.5](https://github.com/ericaltendorf/plotman/)
+* Farmr: [1.5.0.1](https://github.com/joaquimguimaraes/farmr/)
+* MadMax: [master / 95389dc2a2b5c746e5afa36f51e106de3d0f8c91](https://github.com/madMAx43v3r/chia-plotter/)
+* BladeBit: [master / 675a0c2eb63299eb767c0633b3a4c14cdeec9378250afae09b7bf376becd3278](https://github.com/harold-b/bladebit/)
 
 ## Basic Startup
 ```
@@ -20,6 +21,27 @@ docker run --name <container-name> -d ixsystems/chia-docker:latest
 (optional -v /path/to/data:/data)
 (optional -v /path/to/plots:/plots)
 ```
+
+## Chia Binary
+```
+# chia
+```
+
+## Plotman
+```
+# plotman
+```
+
+## MadMax Plotter
+```
+# chia_plot
+```
+
+## BladeBit Plotter
+```
+# bladebit
+```
+
 #### set the timezone for the container (optional, defaults to UTC)
 Timezones can be configured using the `TZ` env variable. A list of supported time zones can be found [here](http://manpages.ubuntu.com/manpages/focal/man3/DateTime::TimeZone::Catalog.3pm.html)
 ```
