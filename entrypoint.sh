@@ -97,10 +97,10 @@ if [[ ${testnet} == "true" ]]; then
 fi
 
 if [[ $farmr == 'farmer' ]]; then
-	(cd /farmr/ && ./farmer.sh) &
+	(cd /farmr/ && ./farmr farmer headless) &
 fi
 if [[ $farmr == 'harvester' ]]; then
-	(cd /farmr/ && ./harvester.sh) &
+	(cd /farmr/ && ./farmr harvester headless) &
 fi
 
 if [[ $plotman == 'true' ]]; then
