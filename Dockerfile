@@ -2,11 +2,11 @@ FROM ubuntu:latest AS mm_compiler
 ENV MM_BRANCH="master"
 ENV MM_CHECKOUT="974d6e5f1440f68c48492122ca33828a98864dfc"
 ENV BB_BRANCH="master"
-ENV BB_CHECKOUT="95389dc2a2b5c746e5afa36f51e106de3d0f8c91"
+ENV BB_CHECKOUT="240a9b547736ea8d32b1998ba468f70c03ff2f3a"
 
 WORKDIR /root
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y gcc g++ cmake libsodium-dev git
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y gcc g++ cmake libsodium-dev git libnuma-dev
 
 RUN echo "cloning MadMax branch ${MM_BRANCH}"
 RUN git clone --branch ${MM_BRANCH} https://github.com/madMAx43v3r/chia-plotter.git \
@@ -36,9 +36,9 @@ ENV farmer_port="null"
 ENV testnet="false"
 ENV full_node_port="null"
 ENV TZ="UTC"
-ENV CHIA_BRANCH="1.2.2"
-ENV CHIA_CHECKOUT="e24baa620d1f5ee13373baf065c024bd05a41b90"
-ENV FARMR_VERSION="v1.5.3"
+ENV CHIA_BRANCH="1.2.3"
+ENV CHIA_CHECKOUT="b593f55dcd35ef6ca48a4db0c3f57a46947da767"
+ENV FARMR_VERSION="v1.6.3"
 ENV PLOTMAN_VERSION="v0.5.1"
 
 # Chia
