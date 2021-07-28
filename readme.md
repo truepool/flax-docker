@@ -56,7 +56,7 @@ To ensure that your chia config settings and sycned blockchain persist, you can 
 -v /path/to/data:/data
 ```
 
-To use your own keys pass as arguments on startup (post 1.0.2 pre 1.0.2 must manually pass as shown below)
+To use your own keys, place your secret mnemonic into a file and pass as arguments on startup.
 ```
 -v /path/to/key/file:/path/in/container -e keys="/path/in/container"
 ```
