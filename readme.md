@@ -14,6 +14,7 @@ Current Versions:
 * Farmr: [1.7.0.2](https://github.com/joaquimguimaraes/farmr/)
 * MadMax: [master / 974d6e5f1440f68c48492122ca33828a98864dfc](https://github.com/madMAx43v3r/chia-plotter/)
 * BladeBit: [master / 240a9b547736ea8d32b1998ba468f70c03ff2f3a](https://github.com/harold-b/bladebit/)
+* PlotNG: [v0.62](https://github.com/maded2/plotng)
 
 ## Basic Startup
 ```
@@ -40,6 +41,12 @@ docker run --name <container-name> -d ixsystems/chia-docker:latest
 ## BladeBit Plotter
 ```
 # bladebit
+```
+
+## PlotNG
+```
+# plotng-server
+# plotng-client
 ```
 
 #### set the timezone for the container (optional, defaults to UTC)

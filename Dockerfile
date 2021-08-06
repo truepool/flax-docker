@@ -38,8 +38,9 @@ ENV full_node_port="null"
 ENV TZ="UTC"
 ENV CHIA_BRANCH="1.2.3"
 ENV CHIA_CHECKOUT="b593f55dcd35ef6ca48a4db0c3f57a46947da767"
-ENV FARMR_VERSION="v1.7.0.2"
+ENV FARMR_VERSION="v1.7.1.1"
 ENV PLOTMAN_VERSION="v0.5.1"
+ENV PLOTNG_VERSION="v0.26"
 
 # Chia
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y curl jq python3 ansible tar bash ca-certificates git openssl unzip wget python3-pip sudo acl build-essential python3-dev python3.8-venv python3.8-distutils apt nfs-common python-is-python3 vim tzdata libsodium-dev rsync tmux mc
@@ -58,9 +59,18 @@ RUN git clone --branch ${CHIA_BRANCH} https://github.com/Chia-Network/chia-block
 # Farmr
 RUN wget https://github.com/joaquimguimaraes/farmr/releases/download/${FARMR_VERSION}/farmr-linux-x86_64.tar.gz \
 && mkdir /farmr \
-&& tar xf farmr-linux-x86_64.tar.gz -C /farmr/
+&& tar xf farmr-linux-x86_64.tar.gz -C /farmr/ \
+&& rm farmr-linux-x86_64.tar.gz
 COPY ./files/config-xch.json /farmr/config/config-xch.json
 COPY ./files/cache-xch.json /farmr/cache/cache-xch.json
+
+# Plotng
+RUN wget https://github.com/maded2/plotng/releases/download/${PLOTNG_VERSION}/plotng_linux_amd64.tar.gz \
+&& mkdir /plotng \
+&& tar xf plotng_linux_amd64.tar.gz -C /plotng/ \
+&& rm plotng_linux_amd64.tar.gz \
+&& mv /plotng/plotng-client /usr/bin/plotng-client \
+&& mv /plotng/plotng-server /usr/bin/plotng-server
 
 # Plotman
 RUN pip install --force-reinstall git+https://github.com/ericaltendorf/plotman@${PLOTMAN_VERSION}
