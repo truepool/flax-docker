@@ -11,7 +11,7 @@ Current Versions:
 
 * Chia: [1.2.3](https://github.com/Chia-Network/chia-blockchain/)
 * Plotman: [v0.5.1](https://github.com/ericaltendorf/plotman/)
-* Farmr: [1.7.2.7](https://github.com/joaquimguimaraes/farmr/)
+* Farmr: [1.7.3.2](https://github.com/joaquimguimaraes/farmr/)
 * MadMax: [master / 974d6e5f1440f68c48492122ca33828a98864dfc](https://github.com/madMAx43v3r/chia-plotter/)
 * BladeBit: [master / 240a9b547736ea8d32b1998ba468f70c03ff2f3a](https://github.com/harold-b/bladebit/)
 * PlotNG: [v0.62](https://github.com/maded2/plotng)
