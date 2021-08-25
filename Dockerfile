@@ -38,12 +38,12 @@ ENV full_node_port="null"
 ENV TZ="UTC"
 ENV CHIA_BRANCH="1.2.3"
 ENV CHIA_CHECKOUT="b593f55dcd35ef6ca48a4db0c3f57a46947da767"
-ENV FARMR_VERSION="v1.7.3.2"
+ENV FARMR_VERSION="v1.7.4"
 ENV PLOTMAN_VERSION="v0.5.1"
 ENV PLOTNG_VERSION="v0.26"
 
 # Chia
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y curl jq python3 ansible tar bash ca-certificates git openssl unzip wget python3-pip sudo acl build-essential python3-dev python3.8-venv python3.8-distutils apt nfs-common python-is-python3 vim tzdata libsodium-dev libnuma-dev rsync tmux mc
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y curl jq python3 ansible tar bash ca-certificates git openssl unzip wget python3-pip sudo acl build-essential python3-dev python3.8-venv python3.8-distutils apt nfs-common python-is-python3 vim tzdata libsodium-dev libnuma-dev rsync tmux mc sqlite3
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN dpkg-reconfigure -f noninteractive tzdata
