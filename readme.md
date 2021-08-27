@@ -9,10 +9,10 @@
 
 Current Versions:
 
-* Chia: [1.2.3](https://github.com/Chia-Network/chia-blockchain/)
+* Chia: [1.2.5](https://github.com/Chia-Network/chia-blockchain/)
 * Plotman: [v0.5.1](https://github.com/ericaltendorf/plotman/)
-* Farmr: [1.7.4](https://github.com/joaquimguimaraes/farmr/)
-* MadMax: [master / 974d6e5f1440f68c48492122ca33828a98864dfc](https://github.com/madMAx43v3r/chia-plotter/)
+* Farmr: [1.7.5](https://github.com/joaquimguimaraes/farmr/)
+* MadMax: [master / a9a49031ac03504b272b7199ef3e071c2d93e9cc](https://github.com/madMAx43v3r/chia-plotter/)
 * BladeBit: [master / 240a9b547736ea8d32b1998ba468f70c03ff2f3a](https://github.com/harold-b/bladebit/)
 * PlotNG: [v0.62](https://github.com/maded2/plotng)
 
@@ -71,10 +71,6 @@ or pass keys into the running container
 ```
 docker exec -it <container-name> venv/bin/chia keys add
 ```
-alternatively you can pass in your local keychain, if you have previously deployed chia with these keys on the host machine
-```
--v ~/.local/share/python_keyring/:/root/.local/share/python_keyring/
-```
 
 To start a farmer only node pass
 ```
@@ -83,7 +79,7 @@ To start a farmer only node pass
 
 To start a harvester only node pass
 ```
--e harvester="true" -e farmer_address="addres.of.farmer" -e farmer_port="portnumber" -v /path/to/ssl/ca:/path/in/container -e ca="/path/in/container" -e keys="copy"
+-e harvester="true" -e farmer_address="addres.of.farmer" -e farmer_port="portnumber" -v /path/to/ssl/ca:/path/in/container -e ca="/path/in/container"
 ```
 
 To start the farmr.net bot in farmer mode (Logs stored in /farmr/log.txt)

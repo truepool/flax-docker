@@ -53,15 +53,17 @@ chia configure -log-level INFO
 if [[ ${keys} == "generate" ]]; then
   echo "to use your own keys pass them as a text file -v /path/to/keyfile:/path/in/container and -e keys=\"/path/in/container\""
   chia keys generate
-elif [[ ${keys} == "copy" ]]; then
-  if [[ -z ${ca} ]]; then
-    echo "A path to a copy of the farmer peer's ssl/ca required."
-	exit
-  else
-  chia init -c ${ca}
-  fi
 else
   chia keys add -f ${keys}
+fi
+
+# Check if a CA cert is provided for harvester
+if [[ -n "${ca}" ]]; then
+  if [[ -z ${ca} ]]; then
+    echo "A path to a copy of the farmer peer's ssl/ca required."
+    exit
+  fi
+  chia init -c ${ca}
 fi
 
 for p in ${plots_dir//:/ }; do
