@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  chia:
+    image: ixsystems/chia-docker:latest
+    restart: always
+    environment:
+      - TZ="America/New_York"
+      - keys="/my_key"
+    volumes:
+      - /mnt/chia/data:/data
+      - /mnt/chia/plots:/plots
+      - /mnt/chia/my_keys:/my_keys
+    ports:
+      - 8444:8444
