@@ -1,5 +1,9 @@
 # Official [TruePool.io](https://www.truepool.io) & [TrueNAS](https://www.truenas.com) Chia Docker Container
 
+<p align="center">
+ <a href="https://discord.com/invite/hWwAfGFyBz"><img alt="Chat Now" src="https://badgen.net/discord/members/Q3St5fPETd/?icon=discord&label=Join%20the%20TruePool%20Community" /></a>
+</p>
+
 ## Important Links
 
 * [TruePool.io - Website & Leaderboards](https://www.truepool.io)
