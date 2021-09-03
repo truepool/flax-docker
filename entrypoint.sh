@@ -18,18 +18,19 @@ ln -fs /data/chia /root/.chia
 # Setup Farmr Files
 if [ ! -d "/data/farmr/config" ] ; then
 	mkdir -p /data/farmr/config
-	mv /farmr/config/config-xch.json /data/farmr/config/
 fi
 rm -rf /farmr/config
 ln -fs /data/farmr/config /farmr/config
 
 if [ ! -d "/data/farmr/cache" ] ; then
 	mkdir -p /data/farmr/cache
-	mv /farmr/cache/cache-xch.json /data/farmr/cache/
 fi
 rm -rf /farmr/cache
 ln -fs /data/farmr/cache /farmr/cache
 ln -fs /data/farmr/id.json /farmr/id.json
+
+# Set location of XCH binary
+echo "/chia-blockchain/venv/bin/chia" > /farmr/override-xch-binary.txt
 
 # Setup plotman persistence
 if [ ! -d "/data/plotman" ] ; then

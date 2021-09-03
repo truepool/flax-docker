@@ -38,7 +38,7 @@ ENV full_node_port="null"
 ENV TZ="UTC"
 ENV CHIA_BRANCH="1.2.5"
 ENV CHIA_CHECKOUT="39ab18cb9028a330644d3117cf716b319ee64a45"
-ENV FARMR_VERSION="v1.7.5.6"
+ENV FARMR_VERSION="v1.7.6.0"
 ENV PLOTMAN_VERSION="v0.5.1"
 ENV PLOTNG_VERSION="v0.26"
 
@@ -61,8 +61,6 @@ RUN wget https://github.com/joaquimguimaraes/farmr/releases/download/${FARMR_VER
 && mkdir /farmr \
 && tar xf farmr-linux-x86_64.tar.gz -C /farmr/ \
 && rm farmr-linux-x86_64.tar.gz
-COPY ./files/config-xch.json /farmr/config/config-xch.json
-COPY ./files/cache-xch.json /farmr/cache/cache-xch.json
 
 # Plotng
 RUN wget https://github.com/maded2/plotng/releases/download/${PLOTNG_VERSION}/plotng_linux_amd64.tar.gz \
@@ -86,5 +84,7 @@ RUN ln -s /usr/lib/chia-plotter/chia_plot /usr/bin/chia_plot
 # Copy bladebit
 COPY --from=mm_compiler /root/bladebit/.bin/release/bladebit /usr/bin/bladebit
 
+# Setup custom bashrc
+COPY ./files/bashrc /root/.bashrc
 
 ENTRYPOINT ["bash", "./entrypoint.sh"]
