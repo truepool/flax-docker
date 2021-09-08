@@ -21,6 +21,8 @@ if [ ! -d "/data/farmr/config" ] ; then
 fi
 rm -rf /farmr/config
 ln -fs /data/farmr/config /farmr/config
+rm /farmr/blockchain/xch.json
+cp /farmr/blockchain/xfx.json.template /farmr/blockchain/xfx.json
 
 if [ ! -d "/data/farmr/cache" ] ; then
 	mkdir -p /data/farmr/cache
