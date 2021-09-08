@@ -93,7 +93,7 @@ fi
 
 if [[ ${testnet} == "true" ]]; then
   if [[ -z $full_node_port || $full_node_port == "null" ]]; then
-    flax configure --set-fullnode-port 58444
+    flax configure --set-fullnode-port 6888
   else
     flax configure --set-fullnode-port ${var.full_node_port}
   fi

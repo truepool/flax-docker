@@ -73,8 +73,8 @@ RUN wget https://github.com/maded2/plotng/releases/download/${PLOTNG_VERSION}/pl
 # Plotman
 RUN pip install --force-reinstall git+https://github.com/ericaltendorf/plotman@${PLOTMAN_VERSION}
 
-ENV PATH=/chia-blockchain/venv/bin/:$PATH
-WORKDIR /chia-blockchain
+ENV PATH=/flax-blockchain/venv/bin/:$PATH
+WORKDIR /flax-blockchain
 ADD ./entrypoint.sh entrypoint.sh
 
 # Copy madmax

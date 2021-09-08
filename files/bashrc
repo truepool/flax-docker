@@ -99,11 +99,11 @@ fi
 #fi
 
 echo "-------------------------------------------------------------------------"
-echo "Welcome to the Chia Docker container, sponsored by https://truepool.io"
+echo "Welcome to the Flax Docker container, sponsored by https://truepool.io"
 echo ""
 echo "Pooling & Getting Started information: https://bit.ly/3BFp7P2"
 echo "Discord: https://discord.com/invite/hWwAfGFyBz"
 echo ""
-echo "Your Chia services should start automatically. Run the 'chia' command"
+echo "Your Chia services should start automatically. Run the 'flax' command"
 echo "to get started."
 echo "-------------------------------------------------------------------------"
