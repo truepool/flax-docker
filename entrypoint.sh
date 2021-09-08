@@ -10,10 +10,10 @@ if [ ! -d "/data" ] ; then
 fi
 
 # Setup Chia main state directory
-if [ ! -d "/data/chia" ] ; then
-	mkdir -p /data/chia
+if [ ! -d "/data/flax" ] ; then
+	mkdir -p /data/flax
 fi
-ln -fs /data/chia /root/.chia
+ln -fs /data/flax /root/.flax
 
 # Setup Farmr Files
 if [ ! -d "/data/farmr/config" ] ; then
@@ -29,8 +29,8 @@ rm -rf /farmr/cache
 ln -fs /data/farmr/cache /farmr/cache
 ln -fs /data/farmr/id.json /farmr/id.json
 
-# Set location of XCH binary
-echo "/chia-blockchain/venv/bin/chia" > /farmr/override-xch-binary.txt
+# Set location of XFX binary
+echo "/flax-blockchain/venv/bin/flax" > /farmr/override-xfx-binary.txt
 
 # Setup plotman persistence
 if [ ! -d "/data/plotman" ] ; then
@@ -42,20 +42,20 @@ fi
 ln -fs /data/plotman /root/.config/plotman
 
 
-cd /chia-blockchain
+cd /flax-blockchain
 
 . ./activate
 
-chia init
+flax init
 
 # Enable INFO log level by default
-chia configure -log-level INFO
+flax configure -log-level INFO
 
 if [[ ${keys} == "generate" ]]; then
   echo "to use your own keys pass them as a text file -v /path/to/keyfile:/path/in/container and -e keys=\"/path/in/container\""
-  chia keys generate
+  flax keys generate
 else
-  chia keys add -f ${keys}
+  flax keys add -f ${keys}
 fi
 
 # Check if a CA cert is provided for harvester
@@ -64,7 +64,7 @@ if [[ -n "${ca}" ]]; then
     echo "A path to a copy of the farmer peer's ssl/ca required."
     exit
   fi
-  chia init -c ${ca}
+  flax init -c ${ca}
 fi
 
 for p in ${plots_dir//:/ }; do
@@ -72,30 +72,30 @@ for p in ${plots_dir//:/ }; do
     if [[ ! "$(ls -A $p)" ]]; then
         echo "Plots directory '${p}' appears to be empty, try mounting a plot directory with the docker -v command"
     fi
-    chia plots add -d ${p}
+    flax plots add -d ${p}
 done
 
-sed -i 's/localhost/127.0.0.1/g' ~/.chia/mainnet/config/config.yaml
+sed -i 's/localhost/127.0.0.1/g' ~/.flax/mainnet/config/config.yaml
 
 if [[ ${farmer} == 'true' ]]; then
-  chia start farmer-only
+  flax start farmer-only
 elif [[ ${harvester} == 'true' ]]; then
   if [[ -z ${farmer_address} || -z ${farmer_port} || -z ${ca} ]]; then
     echo "A farmer peer address, port, and ca path are required."
     exit
   else
-    chia configure --set-farmer-peer ${farmer_address}:${farmer_port}
-    chia start harvester
+    flax configure --set-farmer-peer ${farmer_address}:${farmer_port}
+    flax start harvester
   fi
 else
-  chia start farmer
+  flax start farmer
 fi
 
 if [[ ${testnet} == "true" ]]; then
   if [[ -z $full_node_port || $full_node_port == "null" ]]; then
-    chia configure --set-fullnode-port 58444
+    flax configure --set-fullnode-port 58444
   else
-    chia configure --set-fullnode-port ${var.full_node_port}
+    flax configure --set-fullnode-port ${var.full_node_port}
   fi
 fi
 

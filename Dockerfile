@@ -24,8 +24,8 @@ RUN git clone --branch ${BB_BRANCH} --recursive https://github.com/harold-b/blad
 
 FROM ubuntu:latest
 
-EXPOSE 8555
-EXPOSE 8444
+EXPOSE 6885
+EXPOSE 6888
 
 ENV keys="generate"
 ENV harvester="false"
@@ -36,8 +36,8 @@ ENV farmer_port="null"
 ENV testnet="false"
 ENV full_node_port="null"
 ENV TZ="UTC"
-ENV CHIA_BRANCH="1.2.5"
-ENV CHIA_CHECKOUT="39ab18cb9028a330644d3117cf716b319ee64a45"
+ENV FLAX_BRANCH="0.1.1"
+ENV CHIA_CHECKOUT="edbde2c1f7f0f4aecaf5bee7c6bd19eaf0255fe2"
 ENV FARMR_VERSION="v1.7.6.10"
 ENV PLOTMAN_VERSION="v0.5.1"
 ENV PLOTNG_VERSION="v0.26"
@@ -48,10 +48,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteract
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN dpkg-reconfigure -f noninteractive tzdata
 
-RUN echo "cloning ${CHIA_BRANCH}"
-RUN git clone --branch ${CHIA_BRANCH} https://github.com/Chia-Network/chia-blockchain.git \
-&& cd chia-blockchain \
-&& git checkout ${CHIA_CHECKOUT} \
+RUN echo "cloning ${FLAX_BRANCH}"
+RUN git clone --branch ${FLAX_BRANCH} https://github.com/Flax-Network/flax-blockchain.git \ 
+&& cd flax-blockchain \
+&& git checkout ${FLAX_CHECKOUT} \
 && git submodule update --init mozilla-ca \
 && chmod +x install.sh \
 && /usr/bin/sh ./install.sh
