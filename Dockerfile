@@ -2,7 +2,7 @@ FROM ubuntu:latest AS mm_compiler
 ENV MM_BRANCH="master"
 ENV MM_CHECKOUT="a9a49031ac03504b272b7199ef3e071c2d93e9cc"
 ENV BB_BRANCH="master"
-ENV BB_CHECKOUT="240a9b547736ea8d32b1998ba468f70c03ff2f3a"
+ENV BB_CHECKOUT="cef433cac3ff8f469529486bb5f036ec879d88be"
 
 WORKDIR /root
 
@@ -36,7 +36,7 @@ ENV farmer_port="null"
 ENV testnet="false"
 ENV full_node_port="null"
 ENV TZ="UTC"
-ENV FLAX_BRANCH="0.1.1"
+ENV FLAX_BRANCH="0.1.2"
 ENV CHIA_CHECKOUT="edbde2c1f7f0f4aecaf5bee7c6bd19eaf0255fe2"
 ENV FARMR_VERSION="v1.7.6.10"
 ENV PLOTMAN_VERSION="v0.5.1"

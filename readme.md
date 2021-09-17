@@ -13,11 +13,11 @@
 
 Current Versions:
 
-* Flax: [0.1.1](https://github.com/Flax-Network/flax-blockchain/)
+* Flax: [0.1.2](https://github.com/Flax-Network/flax-blockchain/)
 * Plotman: [v0.5.1](https://github.com/ericaltendorf/plotman/)
 * Farmr: [1.7.6.10](https://github.com/joaquimguimaraes/farmr/)
 * MadMax: [master / a9a49031ac03504b272b7199ef3e071c2d93e9cc](https://github.com/madMAx43v3r/chia-plotter/)
-* BladeBit: [master / 240a9b547736ea8d32b1998ba468f70c03ff2f3a](https://github.com/harold-b/bladebit/)
+* BladeBit: [master / cef433cac3ff8f469529486bb5f036ec879d88be](https://github.com/harold-b/bladebit/)
 * PlotNG: [v0.62](https://github.com/maded2/plotng)
 
 ## Basic Startup
