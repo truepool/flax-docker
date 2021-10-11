@@ -1,26 +1,27 @@
 FROM ubuntu:latest AS mm_compiler
 ENV MM_BRANCH="master"
-ENV MM_CHECKOUT="a9a49031ac03504b272b7199ef3e071c2d93e9cc"
-ENV BB_BRANCH="master"
-ENV BB_CHECKOUT="cef433cac3ff8f469529486bb5f036ec879d88be"
+ENV MM_CHECKOUT="2ffe7a6e84370d1a54e558deb392bdca9dfd89cb"
+ENV BB_VERSION="v1.2.0"
 
 WORKDIR /root
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y gcc g++ cmake libsodium-dev git libnuma-dev
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y gcc g++ cmake libsodium-dev git libnuma-dev libgmp-dev wget
 
 RUN echo "cloning MadMax branch ${MM_BRANCH}"
-RUN git clone --branch ${MM_BRANCH} https://github.com/madMAx43v3r/chia-plotter.git \
-&& cd chia-plotter \
+RUN git clone --branch ${MM_BRANCH} https://github.com/Chia-Network/chia-plotter-madmax \
+&& cd chia-plotter-madmax \
 && git checkout ${MM_CHECKOUT} \
 && git submodule update --init \
 && /bin/sh ./make_devel.sh
 
-RUN echo "cloning BladeBit ${BB_BRANCH}"
-RUN git clone --branch ${BB_BRANCH} --recursive https://github.com/harold-b/bladebit.git \
+RUN echo "Building BladeBit ${BB_VERSION}"
+RUN wget https://github.com/Chia-Network/bladebit/archive/refs/tags/${BB_VERSION}.tar.gz \
+&& tar xf ${BB_VERSION}.tar.gz \
+&& rm ${BB_VERSION}.tar.gz \
+&& mv bladebit-* bladebit \
 && cd bladebit \
-&& ./build-bls \
-&& make clean && make -j$(nproc --all)
-
+&& mkdir -p build && cd build \
+&& cmake .. && cmake --build . --target bladebit --config Release
 
 FROM ubuntu:latest
 
@@ -36,8 +37,7 @@ ENV farmer_port="null"
 ENV testnet="false"
 ENV full_node_port="null"
 ENV TZ="UTC"
-ENV FLAX_BRANCH="0.1.2"
-ENV CHIA_CHECKOUT="edbde2c1f7f0f4aecaf5bee7c6bd19eaf0255fe2"
+ENV FLAX_BRANCH="0.1.3"
 ENV FARMR_VERSION="v1.7.6.10"
 ENV PLOTMAN_VERSION="v0.5.1"
 ENV PLOTNG_VERSION="v0.26"
@@ -51,7 +51,6 @@ RUN dpkg-reconfigure -f noninteractive tzdata
 RUN echo "cloning ${FLAX_BRANCH}"
 RUN git clone --branch ${FLAX_BRANCH} https://github.com/Flax-Network/flax-blockchain.git \ 
 && cd flax-blockchain \
-&& git checkout ${FLAX_CHECKOUT} \
 && git submodule update --init mozilla-ca \
 && chmod +x install.sh \
 && /usr/bin/sh ./install.sh
@@ -78,11 +77,11 @@ WORKDIR /flax-blockchain
 ADD ./entrypoint.sh entrypoint.sh
 
 # Copy madmax
-COPY --from=mm_compiler /root/chia-plotter/build /usr/lib/chia-plotter
+COPY --from=mm_compiler /root/chia-plotter-madmax/build /usr/lib/chia-plotter
 RUN ln -s /usr/lib/chia-plotter/chia_plot /usr/bin/chia_plot
 
 # Copy bladebit
-COPY --from=mm_compiler /root/bladebit/.bin/release/bladebit /usr/bin/bladebit
+COPY --from=mm_compiler /root/bladebit/build/bladebit /usr/bin/bladebit
 
 # Setup custom bashrc
 COPY ./files/bashrc /root/.bashrc
