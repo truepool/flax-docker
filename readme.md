@@ -2,7 +2,7 @@
 
 Current Versions:
 
-* Flax: [0.1.7](https://github.com/Flax-Network/flax-blockchain/)
+* Flax: [0.1.8](https://github.com/Flax-Network/flax-blockchain/)
 * Plotman: [v0.5.1](https://github.com/ericaltendorf/plotman/)
 * Farmr: [1.7.7.4](https://github.com/joaquimguimaraes/farmr/)
 * MadMax: [master / a9a49031ac03504b272b7199ef3e071c2d93e9cc](https://github.com/madMAx43v3r/chia-plotter/)
